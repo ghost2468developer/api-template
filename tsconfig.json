@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS",
+    "module": "ES2020",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
@@ -16,9 +16,9 @@
     "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
-      "@graphql/*": ["src/graphql/*"]
+      "@graphql/*": ["graphql/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "graphql"],
   "exclude": ["node_modules", "dist"]
 }

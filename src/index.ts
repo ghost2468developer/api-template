@@ -3,8 +3,8 @@ import { ApolloServer } from "apollo-server"
 import { exec } from "child_process"
 import dotenv from "dotenv"
 import util from "util"
-import { resolvers } from "./graphql/resolvers"
-import { typeDefs } from "./graphql/schema"
+import { resolvers } from "../graphql/resolvers"
+import { typeDefs } from "../graphql/schema"
 
 dotenv.config();
 const prisma = new PrismaClient();
