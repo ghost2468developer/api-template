@@ -1,0 +1,37 @@
+{
+  "name": "api-template",
+  "version": "1.0.0",
+  "description": "Node.js + TypeScript + GraphQL + Prisma backend",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghost2468developer/api-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghost2468developer/api-template/issues"
+  },
+  "homepage": "https://github.com/ghost2468developer/api-template#readme",
+  "dependencies": {
+    "@prisma/client": "^6.16.2",
+    "apollo-server": "^3.13.0",
+    "dotenv": "^17.2.2",
+    "graphql": "^16.11.0",
+    "prisma": "^6.16.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
