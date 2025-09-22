@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ES2020",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -19,6 +19,6 @@
       "@graphql/*": ["graphql/*"]
     }
   },
-  "include": ["src", "graphql"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

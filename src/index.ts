@@ -1,15 +1,46 @@
 import { PrismaClient } from "@prisma/client"
-import { ApolloServer } from "apollo-server"
+import { ApolloServer, gql } from "apollo-server"
 import { exec } from "child_process"
 import dotenv from "dotenv"
 import util from "util"
-import { resolvers } from "../graphql/resolvers"
-import { typeDefs } from "../graphql/schema"
 
 dotenv.config();
 const prisma = new PrismaClient();
 const execAsync = util.promisify(exec);
 
+// -------------------- GraphQL Schema --------------------
+export const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    createdAt: String!
+  }
+
+  type Query {
+    users: [User!]!
+    user(id: ID!): User
+  }
+
+  type Mutation {
+    createUser(name: String!, email: String!): User!
+  }
+`;
+
+// -------------------- GraphQL Resolvers --------------------
+export const resolvers = {
+  Query: {
+    users: () => prisma.user.findMany(),
+    user: (_: any, args: { id: number }) =>
+      prisma.user.findUnique({ where: { id: Number(args.id) } }),
+  },
+  Mutation: {
+    createUser: (_: any, args: { name: string; email: string }) =>
+      prisma.user.create({ data: args }),
+  },
+};
+
+// -------------------- Helper Functions --------------------
 async function runMigrations() {
   try {
     console.log("⏳ Running migrations...");
@@ -35,6 +66,7 @@ async function seedDefaultUser() {
   }
 }
 
+// -------------------- Start Apollo Server --------------------
 async function startServer() {
   await runMigrations();
   await seedDefaultUser();
@@ -53,7 +85,3 @@ startServer().catch((err) => {
   console.error("❌ Failed to start server", err);
   process.exit(1);
 });
-
-
-
-
