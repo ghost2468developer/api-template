@@ -11,9 +11,13 @@ const prisma = new PrismaClient();
 const execAsync = util.promisify(exec);
 
 async function runMigrations() {
-  console.log("⏳ Running migrations...");
-  await execAsync("npx prisma migrate deploy");
-  console.log("✅ Migrations applied");
+  try {
+    console.log("⏳ Running migrations...");
+    await execAsync("npx prisma migrate deploy");
+    console.log("✅ Migrations applied");
+  } catch (err) {
+    console.error("❌ Migration failed:", err);
+  }
 }
 
 async function seedDefaultUser() {
@@ -48,4 +52,4 @@ async function startServer() {
 startServer().catch((err) => {
   console.error("❌ Failed to start server", err);
   process.exit(1);
-});
+})

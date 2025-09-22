@@ -11,7 +11,14 @@
     "rootDir": "src",
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "paths": {
+      "@graphql/*": ["graphql/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
